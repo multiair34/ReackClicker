@@ -1,6 +1,6 @@
 export const getCoins = (state) => {
-  return state.gameAreaReducer.coins;
+  return state.gameArea.coins;
 };
 export const getTaps = (state) => {
-  return state.gameAreaReducer.taps;
+  return state.gameArea.taps;
 };

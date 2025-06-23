@@ -1,10 +1,10 @@
-import { useShop } from "../../providers/ShopProvider";
 import { useDispatch, useSelector } from "react-redux";
 import { getCoins, getTaps } from "./selectors";
 import { gameAreaActions } from "./gameArea.slice";
+import { getBuyItems } from "../Shop/selectors";
 
 export default function GameArea() {
-  const { buyItems } = useShop();
+  const buyItems = useSelector(getBuyItems);
   const dispatch = useDispatch();
   const taps = useSelector(getTaps);
   const coins = useSelector(getCoins);

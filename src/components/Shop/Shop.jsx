@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { useTheme } from "../providers/ThemeProvider";
-import { useShop } from "../providers/ShopProvider";
+import { useTheme } from "../../providers/ThemeProvider";
 import { useDispatch, useSelector } from "react-redux";
-import { getCoins } from "./GameArea/selectors";
-import { gameAreaActions } from "./GameArea/gameArea.slice";
+import { getCoins } from "../GameArea/selectors";
+import { getBuyItems } from "./selectors";
+import { gameAreaActions } from "../GameArea/gameArea.slice";
+import { shopActions } from "./shop.slice";
 
 const firstItemCategory = "Сurrency";
 const secondItemCategory = "Beer Buff";
-const lastItemCategory = "unnamed";
+const lastItemCategory = "PassiveMoney";
+const testCategory = "colorTheme";
 
 const shopItems = {
   [firstItemCategory]: [
@@ -20,11 +22,16 @@ const shopItems = {
     { name: "rubles", price: 15 },
   ],
   [secondItemCategory]: [
-    { name: "stella", price: 30 },
-    { name: "efes", price: 60 },
-    { name: "bud", price: 90 },
+    { name: "stella", description: "Увеличивает пассивный доход", price: 30 },
+    { name: "efes", description: "Увеличивает пассивный доход", price: 60 },
+    { name: "bud", description: "Увеличивает пассивный доход", price: 90 },
   ],
   [lastItemCategory]: [
+    { name: "1", price: 0 },
+    { name: "2", price: 20 },
+    { name: "3", price: 30 },
+  ],
+  [testCategory]: [
     { name: "Theme default", price: 0 },
     { name: "Theme orange", price: 20 },
     { name: "Theme green", price: 30 },
@@ -35,18 +42,16 @@ export default function Shop() {
   const { theme } = useTheme();
   const dispatch = useDispatch();
   const coins = useSelector(getCoins);
+  const buyItems = useSelector(getBuyItems);
   const [activeCategory, setActiveCategory] = useState(firstItemCategory);
-  const { buyItems, purchasedItem } = useShop();
 
-  // При клике на кнопку buy функция должна уменьшать coins на сумму покупки, а опцию блокировать
   const onClickBuyButton = (item) => {
     const alreadyBought = buyItems.includes(item.name);
     const canAfford = coins >= item.price;
 
     if (!alreadyBought && canAfford) {
       dispatch(gameAreaActions.setCoins(coins - item.price));
-      // setCoins((prev) => prev - item.price);
-      purchasedItem(item.name);
+      dispatch(shopActions.purchasedItem(item.name));
     }
   };
 

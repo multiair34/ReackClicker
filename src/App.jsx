@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Header from "./components/Header";
-import Shop from "./components/Shop";
 import Menu from "./components/menuElem/Menu";
 import { useTheme } from "./providers/ThemeProvider";
 import { BrowserRouter, Routes, Route } from "react-router";
