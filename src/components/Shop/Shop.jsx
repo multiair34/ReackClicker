@@ -9,7 +9,6 @@ import { shopActions } from "./shop.slice";
 const firstItemCategory = "Сurrency";
 const secondItemCategory = "Beer Buff";
 const lastItemCategory = "PassiveMoney";
-const testCategory = "colorTheme";
 
 const shopItems = {
   [firstItemCategory]: [
@@ -30,11 +29,6 @@ const shopItems = {
     { name: "1", price: 0 },
     { name: "2", price: 20 },
     { name: "3", price: 30 },
-  ],
-  [testCategory]: [
-    { name: "Theme default", price: 0 },
-    { name: "Theme orange", price: 20 },
-    { name: "Theme green", price: 30 },
   ],
 };
 

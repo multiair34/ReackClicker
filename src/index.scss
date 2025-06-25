@@ -133,63 +133,85 @@ body {
       }
     }
   }
+}
 
-  &_settings {
-    margin: 0 10px;
-    margin-bottom: 10px;
-    background-color: #575757;
-    height: 48.5em;
+.menu-settings {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  font-family: "Arial", sans-serif;
 
-    &-item {
-      padding: 0 10px;
-      display: flex;
-      flex-direction: column;
+  &__title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #333;
+  }
 
-      p {
-        font-size: 1.2em;
-        background-color: #2b303b;
-        text-align: center;
-        padding: 5px 0;
-        margin: 10px 0;
-        border-radius: 10px;
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f7f7f7;
+    padding: 15px 20px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #eaeaea;
+    }
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    input[type="radio"] {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+      accent-color: #4caf50;
+      cursor: pointer;
+    }
+  }
+
+  &__theme-name {
+    font-size: 18px;
+    color: #333;
+  }
+
+  &__controls {
+    display: flex;
+    align-items: center;
+
+    .menu-settings__price {
+      font-size: 16px;
+      color: #777;
+      margin-right: 10px;
+    }
+
+    .menu-settings__button {
+      padding: 8px 16px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #45a049;
       }
 
-      div {
-        display: flex;
-        flex-direction: row;
-        margin-top: 0;
-        justify-content: space-around;
-        gap: 20px;
-        div {
-          gap: 5px;
-          display: flex;
-          flex-direction: column;
-        }
-        .deactive {
-          background-color: rgba($color: #000000, $alpha: 0.5);
-          button {
-            background-color: transparent;
-          }
-          button:hover {
-            background-color: transparent;
-          }
-        }
-      }
-      &_buy {
-        border: 1px solid black;
-        width: 100%;
-        p {
-          font-size: 1em;
-          background-color: transparent;
-          text-align: center;
-          padding: 0;
-          margin: 0px 0;
-          border-radius: 0px;
-        }
-        .buy_button {
-          padding: 5px 0;
-          font-size: 1em;
-        }
+      &:disabled {
+        background-color: #cccccc;
+        cursor: not-allowed;
       }
     }
   }
