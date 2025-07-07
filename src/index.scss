@@ -347,6 +347,67 @@ body {
   }
 }
 
+.profile {
+  margin: 0 auto;
+  font-size: 20px;
+  padding: 25px 0;
+  display: grid;
+
+  &__card {
+    margin-bottom: 25px;
+    background-color: #16181d;
+    border: 10px solid #16181d;
+    border-radius: 8px;
+    &-main {
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      gap: 10px;
+      margin-bottom: 25px;
+      border-bottom: 1px solid yellow;
+    }
+  }
+  &__avatar {
+    justify-self: center;
+    align-self: center;
+  }
+  &__name {
+    justify-self: start;
+  }
+  &__description {
+    width: fit-content;
+    max-width: 355px;
+    height: fit-content;
+    max-height: 300px;
+    margin: 0;
+    padding: 5px;
+    overflow: hidden;
+    color: #000;
+    background-color: #fff;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  &__field {
+  }
+
+  &__button {
+    padding: 5px;
+    border: none;
+    background-color: #3f9c63;
+    font-size: 20px;
+    font-weight: bold;
+    &:hover {
+      background-color: #57d186;
+    }
+    &:active {
+      background-color: #2a6841;
+    }
+  }
+}
+
 .default_shop {
   background-image: conic-gradient(
     from 90deg at -10% 100%,

@@ -4,3 +4,6 @@ export const getCoins = (state) => {
 export const getTaps = (state) => {
   return state.gameArea.taps;
 };
+export const getPassiveMoney = (state) => {
+  return state.gameArea.passiveMoney;
+};

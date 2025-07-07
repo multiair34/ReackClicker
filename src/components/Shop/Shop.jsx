@@ -21,9 +21,21 @@ const shopItems = {
     { name: "rubles", price: 15 },
   ],
   [secondItemCategory]: [
-    { name: "stella", description: "Увеличивает пассивный доход", price: 30 },
-    { name: "efes", description: "Увеличивает пассивный доход", price: 60 },
-    { name: "bud", description: "Увеличивает пассивный доход", price: 90 },
+    {
+      name: "passive1",
+      description: "Увеличивает пассивный доход",
+      price: 30,
+    },
+    {
+      name: "passive2",
+      description: "Увеличивает пассивный доход",
+      price: 60,
+    },
+    {
+      name: "passive3",
+      description: "Увеличивает пассивный доход",
+      price: 90,
+    },
   ],
   [lastItemCategory]: [
     { name: "1", price: 0 },

@@ -1,13 +1,31 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getCoins, getTaps } from "./selectors";
+import { getCoins, getPassiveMoney, getTaps } from "./selectors";
 import { gameAreaActions } from "./gameArea.slice";
 import { getBuyItems } from "../Shop/selectors";
+import { useEffect } from "react";
 
 export default function GameArea() {
   const buyItems = useSelector(getBuyItems);
   const dispatch = useDispatch();
   const taps = useSelector(getTaps);
   const coins = useSelector(getCoins);
+  const passiveMoney = useSelector(getPassiveMoney);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      dispatch(gameAreaActions.setCoins((prev) => prev + passiveMoney));
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [dispatch, passiveMoney]);
+
+  useEffect(() => {
+    let total = 0;
+    if (buyItems.includes("passive1")) total += 1;
+    if (buyItems.includes("passive2")) total += 2;
+    if (buyItems.includes("passive3")) total += 5;
+
+    dispatch(gameAreaActions.setPassiveMoney(total));
+  }, [buyItems, dispatch]);
 
   const onNoneBoost = () => {
     dispatch(gameAreaActions.setTaps(taps + 1));
@@ -52,7 +70,7 @@ export default function GameArea() {
       <div className="stats">
         <h2>{taps} taps</h2>
         <h3>{`${coins} ${coins === 1 || coins === 0 ? "coin" : "coins"}`}</h3>
-        <h4>passiveMoney</h4>
+        <h4>{passiveMoney}</h4>
       </div>
       <img
         onClick={onClickTap}
