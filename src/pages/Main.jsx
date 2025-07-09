@@ -1,3 +1,4 @@
+// import AuthPopup from "../components/AuthPopup";
 import GameArea from "../components/GameArea/GameArea";
 import Shop from "../components/Shop/Shop";
 

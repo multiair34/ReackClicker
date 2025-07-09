@@ -1,4 +1,9 @@
+import AuthPopup from "../components/AuthPopup";
+import { useUser } from "../providers/UserProvider";
+
 export default function Profile() {
+  const { userName } = useUser();
+
   return (
     <div className="profile">
       <div className="profile__card">
@@ -9,9 +14,9 @@ export default function Profile() {
             alt="#"
           />
 
-          <p className="profile__name">nickname: Nickname</p>
+          <p className="profile__name">nickname: {userName}</p>
         </div>
-        <p className="profile__description">lorem30</p>
+        <p className="profile__description">Lorem30</p>
       </div>
       <form className="profile__form" action="" method="get">
         <div className="profile__field">
@@ -26,7 +31,7 @@ export default function Profile() {
           <label className="profile__label">Информация о себе: </label>
           <input className="profile__input" type="text" placeholder="о себе" />
         </div>
-        <button className="profile__button" type="button">
+        <button className="profile__button" type="submit">
           Сохранить
         </button>
       </form>
