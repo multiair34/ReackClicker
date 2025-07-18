@@ -356,7 +356,7 @@ body {
     background-color: #16181d;
     border: 10px solid #16181d;
     border-radius: 8px;
-    width: 355px;
+    width: 450px;
     &-main {
       display: grid;
       grid-template-columns: 1fr 3fr;
@@ -364,13 +364,22 @@ body {
       border-bottom: 1px solid yellow;
     }
   }
+
+  &__img {
+    margin: auto;
+  }
+
   &__avatar {
     justify-self: center;
     align-self: center;
   }
-  &__name {
-    justify-self: start;
+
+  &__info {
+    p {
+      margin: 0 0 10px 0;
+    }
   }
+
   &__description {
     max-height: 300px;
     margin: 0;
@@ -384,6 +393,19 @@ body {
     display: flex;
     flex-direction: column;
     gap: 25px;
+  }
+
+  &__field {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__input {
+    outline: none;
+    border: none;
+    padding: 5px;
+    color: #f7f7f7;
+    background-color: #22252c;
   }
 
   &__button {
@@ -458,6 +480,47 @@ body {
       background-color: #376d35;
     }
   }
+}
+
+.icon-grid {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  justify-content: flex-start;
+}
+
+.icon-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  width: 90px;
+}
+
+.icon-button:hover {
+  border-color: #4a90e2;
+  background-color: #f0f8ff;
+  transform: translateY(-2px);
+}
+
+.icon-avatar {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-name {
+  font-size: 12px;
+  color: #333;
+  text-align: center;
 }
 
 .default_shop {
