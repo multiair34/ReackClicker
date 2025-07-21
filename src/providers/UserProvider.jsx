@@ -1,4 +1,4 @@
-import { createContext, use, useContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { Cat, Dog, Panda, Bug } from "lucide-react";
 
 const UserContext = createContext({});

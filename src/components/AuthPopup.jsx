@@ -9,9 +9,9 @@ export default function AuthPopup() {
     setLocalName(e.target.value);
   };
 
-  const onClickButton = (e) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (localName != "") {
-      e.preventDefault();
       setShowModal(false);
       setUserName(localName);
     }
@@ -24,7 +24,7 @@ export default function AuthPopup() {
   return (
     <div className="popup">
       <div className="popup__overlay">
-        <form className="popup__form">
+        <form className="popup__form" onSubmit={handleSubmit}>
           <label className="popup__label">
             Выберете картинку профиля
             <div className="icon-grid">
@@ -52,11 +52,7 @@ export default function AuthPopup() {
             />
           </label>
 
-          <button
-            onClick={onClickButton}
-            className="popup__button"
-            type="submit"
-          >
+          <button className="popup__button" type="submit">
             OK
           </button>
         </form>

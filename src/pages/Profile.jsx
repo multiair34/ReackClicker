@@ -1,5 +1,19 @@
-import { useState } from "react";
 import { useUser } from "../providers/UserProvider";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const schema = z.object({
+  nickname: z
+    .string()
+    .min(2, "Минимальное кол-во символов 2")
+    .max(10, "Максимальное кол-во символов 10"),
+  info: z.string().max(100, "Максимальное кол-во символов 100").optional(),
+  age: z.string().refine((num) => !isNaN(Number(num)) && Number(num) > 0, {
+    message: "Возраст не может быть меньше 0",
+  }),
+  email: z.email(),
+});
 
 export default function Profile() {
   const {
@@ -14,18 +28,25 @@ export default function Profile() {
     ProfileImg,
   } = useUser();
 
-  const [tempName, setTempName] = useState(userName);
-  const [tempInfo, setTempInfo] = useState(userInfo);
-  const [tempAge, setTempAge] = useState(userAge);
-  const [tempEmail, setTempEmail] = useState(userEmail);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      email: userEmail || "",
+      nickname: userName || "",
+      info: userInfo || "",
+      age: userAge || "",
+    },
+  });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    setUserName(tempName);
-    setUserEmail(tempEmail);
-    setUserAge(tempAge);
-    setUserInfo(tempInfo);
+  const onSubmit = (data) => {
+    setUserName(data.nickname);
+    setUserEmail(data.email);
+    setUserAge(data.age);
+    setUserInfo(data.info);
   };
 
   return (
@@ -44,16 +65,16 @@ export default function Profile() {
         <p className="profile__description">{userInfo}</p>
       </div>
 
-      <form className="profile__form" onSubmit={handleSubmit}>
+      <form className="profile__form" onSubmit={handleSubmit(onSubmit)}>
         <div className="profile__field">
           <label className="profile__label">Новый никнейм: </label>
           <input
             className="popup__input"
             type="text"
             placeholder="введите новый никнейм"
-            value={tempName}
-            onChange={(e) => setTempName(e.target.value)}
+            {...register("nickname")}
           />
+          {errors.nickname && <p>{errors.nickname.message}</p>}
         </div>
         <div className="profile__field">
           <label className="profile__label">Информация о себе: </label>
@@ -61,19 +82,18 @@ export default function Profile() {
             className="popup__input"
             type="text"
             placeholder="о себе"
-            value={tempInfo}
-            onChange={(e) => setTempInfo(e.target.value)}
+            {...register("info")}
           />
+          {errors.info && <p>{errors.info.message}</p>}
         </div>
         <div className="profile__field">
           <label className="profile__label">Ваш возраст: </label>
           <input
             className="popup__input"
-            type="number"
             placeholder="возраст"
-            value={tempAge}
-            onChange={(e) => setTempAge(e.target.value)}
+            {...register("age")}
           />
+          {errors.age && <p>{errors.age.message}</p>}
         </div>
         <div className="profile__field">
           <label className="profile__label">Ваша почта: </label>
@@ -81,9 +101,9 @@ export default function Profile() {
             className="popup__input"
             type="email"
             placeholder="email"
-            value={tempEmail}
-            onChange={(e) => setTempEmail(e.target.value)}
+            {...register("email")}
           />
+          {errors.email && <p>{errors.email.message}</p>}
         </div>
         <button className="popup__button" type="submit">
           Сохранить
