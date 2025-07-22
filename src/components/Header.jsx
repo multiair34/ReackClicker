@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { useUser } from "../providers/UserProvider";
+import { Menu } from "lucide-react";
 
 export default function Header({ onClickMenu }) {
   const { userName, ProfileImg } = useUser();
@@ -7,7 +8,7 @@ export default function Header({ onClickMenu }) {
   return (
     <div className="header">
       <div className="menu_btn" onClick={onClickMenu}>
-        menu
+        <Menu size={36} />
       </div>
       <Link to="/">
         <h1>ReactClicker</h1>

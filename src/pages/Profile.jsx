@@ -74,7 +74,9 @@ export default function Profile() {
             placeholder="введите новый никнейм"
             {...register("nickname")}
           />
-          {errors.nickname && <p>{errors.nickname.message}</p>}
+          {errors.nickname && (
+            <p className="profile__input-error">{errors.nickname.message}</p>
+          )}
         </div>
         <div className="profile__field">
           <label className="profile__label">Информация о себе: </label>
@@ -84,7 +86,9 @@ export default function Profile() {
             placeholder="о себе"
             {...register("info")}
           />
-          {errors.info && <p>{errors.info.message}</p>}
+          {errors.info && (
+            <p className="profile__input-error">{errors.info.message}</p>
+          )}
         </div>
         <div className="profile__field">
           <label className="profile__label">Ваш возраст: </label>
@@ -93,7 +97,9 @@ export default function Profile() {
             placeholder="возраст"
             {...register("age")}
           />
-          {errors.age && <p>{errors.age.message}</p>}
+          {errors.age && (
+            <p className="profile__input-error">{errors.age.message}</p>
+          )}
         </div>
         <div className="profile__field">
           <label className="profile__label">Ваша почта: </label>
@@ -103,7 +109,9 @@ export default function Profile() {
             placeholder="email"
             {...register("email")}
           />
-          {errors.email && <p>{errors.email.message}</p>}
+          {errors.email && (
+            <p className="profile__input-error">{errors.email.message}</p>
+          )}
         </div>
         <button className="popup__button" type="submit">
           Сохранить
